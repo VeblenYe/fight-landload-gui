@@ -29,7 +29,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -69,14 +69,22 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>D:\fight-landload-gui\fight-landload-gui\SDL2-devel-2.0.8-VC\SDL2-2.0.8\include;D:\fight-landload-gui\fight-landload-gui\SDL2_ttf-devel-2.0.14-VC\SDL2_ttf-2.0.14\include;D:\fight-landload-gui\fight-landload-gui\SDL2_mixer-devel-2.0.2-VC\SDL2_mixer-2.0.2\include;D:\fight-landload-gui\fight-landload-gui\SDL2_image-devel-2.0.3-VC\SDL2_image-2.0.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\fight-landload-gui\fight-landload-gui\SDL2-devel-2.0.8-VC\SDL2-2.0.8\lib\x86;D:\fight-landload-gui\fight-landload-gui\SDL2_ttf-devel-2.0.14-VC\SDL2_ttf-2.0.14\lib\x86;D:\fight-landload-gui\fight-landload-gui\SDL2_mixer-devel-2.0.2-VC\SDL2_mixer-2.0.2\lib\x86;D:\fight-landload-gui\fight-landload-gui\SDL2_image-devel-2.0.3-VC\SDL2_image-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -115,6 +123,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="ClassEventHandler.h" />
+    <ClInclude Include="cleanup.h" />
+    <ClInclude Include="common.h" />
+    <ClInclude Include="EventHandle.h" />
+    <ClInclude Include="EventManager.h" />
+    <ClInclude Include="MouseDrag.h" />
+    <ClInclude Include="Poker.h" />
+    <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="EventHandle.cpp" />
+    <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="MouseDrag.cpp" />
+    <ClCompile Include="Poker.cpp" />
+    <ClCompile Include="test.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

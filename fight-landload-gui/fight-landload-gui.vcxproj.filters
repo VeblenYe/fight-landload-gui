@@ -14,4 +14,56 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Window.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cleanup.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassEventHandler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Poker.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseDrag.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Window.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Poker.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandle.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseDrag.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
