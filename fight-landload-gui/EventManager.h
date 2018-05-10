@@ -17,6 +17,8 @@ public:
 	using HandleList = list<EventHandle *>;
 	using TypeHandleMap = map<int, HandleList>;
 
+	EventManager(const EventManager &) = delete;
+
 	static EventManager &instance() {
 		static EventManager inst;
 		return inst;
@@ -31,7 +33,7 @@ public:
 	void DispatchEvent(SDL_Event *e);
 private:
 	EventManager() {};
-	EventManager(const EventManager &) {}
+	
 	~EventManager() {};
 
 	TypeHandleMap THMap;

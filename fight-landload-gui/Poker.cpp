@@ -10,6 +10,7 @@ bool operator<(const Poker &lhs, const Poker &rhs)
 }
 
 
+// 需要修改
 std::pair<int, int> Poker::handle(SDL_Event *e) {
 	int handled = 0;
 
@@ -25,10 +26,7 @@ std::pair<int, int> Poker::handle(SDL_Event *e) {
 		if (hasIntersection(&buttonBox, &area)) {
 			state = !state;
 			moveExtent = state * move;
-			/*
-			std::cout << "该牌坐标为" << buttonBox.x << " " << buttonBox.y << " " << buttonBox.w << " "
-				<< buttonBox.h << std::endl;
-				*/
+			std::cout << "该牌为" << nums << std::endl;
 			handled = 1;
 		}
 		else {

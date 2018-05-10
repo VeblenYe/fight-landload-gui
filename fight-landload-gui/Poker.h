@@ -15,6 +15,13 @@ public:
 		nums = priority / 10;
 	}
 
+	// 注意必须先读入图片再注册
+	void registered(int type) override {
+		ClassEventHandler<Poker> *handle =
+			new ClassEventHandler<Poker>(this, &Poker::handle, this->priority);
+		EventManager::instance().AddEventHandler(type, { handle });
+	}
+
 	int getNum() const {
 		return nums;
 	}
@@ -26,9 +33,6 @@ public:
 	}
 
 	std::pair<int, int> handle(SDL_Event *e) override;
-	
-	// 优先级
-	int priority;
 
 	~Poker() {}
 private:

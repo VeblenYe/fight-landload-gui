@@ -14,10 +14,15 @@ using std::string;
 
 class Window {
 public:
-	Window(const string &title = "Demo", int w = 1280, int h = 640);
+	Window(const string &title = "Demo", int w = 1600, int h = 900);
 
 	// ‘ÿ»ÎÕº∆¨
 	SDL_Texture *loadImage(const string &file);
+
+	// ‘ÿ»Î±≥æ∞Õº
+	void loadBackground(const string &file) {
+		background = loadImage(file);
+	}
 
 	// ‰÷»æŒƒ±æ
 	SDL_Texture *renderText(const string &fontFile, const string &msg,
@@ -30,13 +35,22 @@ public:
 	void draw(SDL_Texture *tex, SDL_Rect &dst, SDL_Rect *clip = NULL, double angle = 0.0,
 		int xPivot = 0, int yPivot = 0, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
+	// œ‘ æ±≥æ∞Õº
+	void show() {
+		draw(background, mBox);
+	}
+
 	// ≥ œ÷
 	void present() { SDL_RenderPresent(mRenderer.get()); }
 
 	// ∑µªÿ¥∞ø⁄æÿ–Œ¥Û–°£ª
 	SDL_Rect Box() { SDL_GetWindowSize(mWindow.get(), &mBox.w, &mBox.h); return mBox; }
 
+	// ±≥æ∞Õº
+	SDL_Texture *background;
+
 	~Window() {
+		SDL_DestroyTexture(background);
 		SDL_Quit();
 		TTF_Quit();
 	}

@@ -1,5 +1,11 @@
 #include "EventManager.h"
 #include "MouseDrag.h"
+#include <iostream>
+#include <algorithm>
+
+bool compare(EventHandle *lhs, EventHandle *rhs) {
+	return *lhs < *rhs;
+}
 
 
 void EventManager::AddEventHandler(int type, std::initializer_list<EventHandle *> handles) {
@@ -10,7 +16,17 @@ void EventManager::AddEventHandler(int type, std::initializer_list<EventHandle *
 		return;
 	for (auto it = handles.begin(); it != handles.end(); it++)
 		target.first->second.push_back(*it);
-	target.first->second.sort();
+	target.first->second.sort(compare);
+	/*
+	std::cout << THMap.size() << std::ends;*/
+	/*
+	for (auto mapIt = THMap.begin(); mapIt != THMap.end(); mapIt++) {
+		std::cout << mapIt->first << std::ends;
+		for (auto listIt = mapIt->second.begin(); listIt != mapIt->second.end(); listIt++)
+			std::cout << (**listIt).priority << std::ends;
+		std::cout << std::endl;
+	}
+	*/
 }
 
 
