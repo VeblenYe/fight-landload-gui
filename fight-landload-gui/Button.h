@@ -30,11 +30,8 @@ public:
 		buttonImage = pWindow->loadImage(file);
 	}
 
-	void show(SDL_Rect *dst = NULL) {
-		if (dst)
-			pWindow->draw(buttonImage, *dst);
-		else
-			pWindow->draw(buttonImage, buttonBox);
+	void show() {
+		pWindow->draw(buttonImage, buttonBox);
 	}
 
 	virtual void registered(int type) {

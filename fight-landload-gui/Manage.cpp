@@ -5,6 +5,7 @@
 #include <random>
 #include <sstream>
 #include <algorithm>
+#include <memory>
 #include <ctime>
 
 
@@ -21,7 +22,7 @@ int initialize(Window *window) {
 
 	// 载入背景图
 	try {
-		window->loadBackground("background.jpg");
+		window->loadBackground("res/background.jpg");
 	}
 	catch (const std::runtime_error &e) {
 		cout << e.what() << endl;
@@ -39,25 +40,25 @@ int initialize(Window *window) {
 }
 
 // 读入所有扑克牌
-vector<Poker *> readIn(Window *window) {
+vector<shared_ptr<Poker>> readIn(Window *window) {
 		ostringstream os;
-		vector<Poker *> vec;
+		vector<shared_ptr<Poker>> vec;
 		for (int i = 30; i < 180; i += 10) {
 			if(i < 160)
 				for (int j = 0; j < 4; j++) {
-					os << i + j << ".jpg";
+					os << "pukeImage/" << i + j << ".jpg";
 					Poker *p = new Poker(window, 800, 700);
 					p->loadButtonImage(os.str());
 					p->registered(SDL_MOUSEBUTTONUP);
-					vec.push_back(p);
+					vec.push_back(shared_ptr<Poker>(p));
 					os.str("");
 				}
 			else {
-				os << i << ".jpg";
+				os << "pukeImage/" << i << ".jpg";
 				Poker *p = new Poker(window, 800, 700);
 				p->loadButtonImage(os.str());
 				p->registered(SDL_MOUSEBUTTONUP);
-				vec.push_back(p);
+				vec.push_back(shared_ptr<Poker>(p));
 				os.str("");
 			}
 		}
@@ -66,11 +67,11 @@ vector<Poker *> readIn(Window *window) {
 
 
 // 发牌
-bool compare(Poker *lhs, Poker *rhs) {
+bool compare(shared_ptr<Poker> lhs, shared_ptr<Poker> rhs) {
 	return lhs->priority < rhs->priority;
 }
 
-void deal(vector<Poker *> vec, Player *p1, Player *p2, Player *p3) {
+void deal(vector<shared_ptr<Poker>> vec, Player *p1, Player *p2, Player *p3) {
 
 	p1->hold.clear();
 	p2->hold.clear();
@@ -82,8 +83,7 @@ void deal(vector<Poker *> vec, Player *p1, Player *p2, Player *p3) {
 			uniform_int_distribution<unsigned> u(0, vec.size() - 1);
 			if (i == 0) {
 				int k = u(e);
-				auto p = vec[k];
-				p1->hold.push_back(p);
+				p1->hold.push_back(vec[k]);
 				std::swap(vec[k], vec[vec.size() - 1]);
 				vec.erase(vec.begin() + vec.size() - 1);
 			}

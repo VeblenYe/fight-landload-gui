@@ -11,7 +11,7 @@ using std::shared_ptr;
 class Player {
 public:
 	// 持有的牌
-	vector<Poker *> hold;
+	vector<shared_ptr<Poker>> hold;
 
 	// 是否是本地玩家
 	int local;

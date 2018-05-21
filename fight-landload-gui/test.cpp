@@ -13,7 +13,6 @@ int main(int, char **) {
 	initialize(window);
 	auto vec = readIn(window);
 
-	// ³õÊ¼»¯Íæ¼Ò
 	Player *p1 = new Player();
 	Player *p2 = new Player();
 	Player *p3 = new Player();
@@ -25,11 +24,9 @@ int main(int, char **) {
 		while (SDL_PollEvent(&e)) {
 			if (e.type == SDL_QUIT)
 				quit = true;
-			if (e.type == SDL_KEYDOWN) {
-				if (e.key.keysym.sym == SDLK_SPACE) {
+			if (e.type == SDL_KEYDOWN)
+				if (e.key.keysym.sym == SDLK_SPACE)
 					deal(vec, p1, p2, p3);
-				}
-			}
 			EventManager::instance().DispatchEvent(&e);
 		}
 		window->clear();

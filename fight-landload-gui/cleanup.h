@@ -5,6 +5,8 @@
 #include <SDL.h>
 
 
+// —ßœ∞”√
+
 template <typename T, typename... Args>
 void cleanup(T *t, Args&&... args) {
 	cleanup(t);

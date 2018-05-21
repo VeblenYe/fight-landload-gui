@@ -11,7 +11,7 @@ public:
 
 	void loadButtonImage(const string &file) override {
 		Button::loadButtonImage(file);
-		priority = std::stoi(file);
+		priority = std::stoi(file.substr(10));
 		nums = priority / 10;
 	}
 
@@ -24,12 +24,6 @@ public:
 
 	int getNum() const {
 		return nums;
-	}
-
-	void show() {
-		auto temp = buttonBox;
-		temp.y += moveExtent;
-		Button::show(&temp);
 	}
 
 	std::pair<int, int> handle(SDL_Event *e) override;

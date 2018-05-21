@@ -5,6 +5,7 @@
 #include <algorithm>
 
 
+// 当前鼠标是否在矩形内
 bool isInArea(SDL_Rect *box) {
 	int x = 0, y = 0;
 	SDL_GetMouseState(&x, &y);
@@ -15,6 +16,7 @@ bool isInArea(SDL_Rect *box) {
 }
 
 
+// 给定坐标是否在矩形里
 bool isInArea(SDL_Rect *box,  int x, int y) {
 	if ((x > box->x) && (x < box->x + box->w)
 		&& (y > box->y) && (y < box->y + box->h))

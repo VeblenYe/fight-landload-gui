@@ -4,8 +4,7 @@
 #include <iostream>
 
 
-bool operator<(const Poker &lhs, const Poker &rhs)
-{
+bool operator<(const Poker &lhs, const Poker &rhs) {
 	return lhs.nums < rhs.nums;
 }
 
@@ -16,6 +15,7 @@ std::pair<int, int> Poker::handle(SDL_Event *e) {
 
 	auto area = MouseDrag::instance().getDragArea();
 
+	// 判断是否到达边界
 	int in;
 	if (area.x >= buttonBox.x)
 		in = 1;
