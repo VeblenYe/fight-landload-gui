@@ -1,14 +1,13 @@
 #include "EventManager.h"
 #include "MouseDrag.h"
-#include <iostream>
 #include <algorithm>
 
-bool compare(EventHandle *lhs, EventHandle *rhs) {
+bool compare(std::shared_ptr<EventHandle> lhs, std::shared_ptr<EventHandle> rhs) {
 	return *lhs < *rhs;
 }
 
 
-void EventManager::AddEventHandler(int type, std::initializer_list<EventHandle *> handles) {
+void EventManager::AddEventHandler(int type, std::initializer_list<std::shared_ptr<EventHandle>> handles) {
 	if (handles.size() == 0)
 		return;
 	auto target = THMap.insert(std::make_pair(type, HandleList()));
@@ -17,20 +16,10 @@ void EventManager::AddEventHandler(int type, std::initializer_list<EventHandle *
 	for (auto it = handles.begin(); it != handles.end(); it++)
 		target.first->second.push_back(*it);
 	target.first->second.sort(compare);
-	/*
-	std::cout << THMap.size() << std::ends;*/
-	/*
-	for (auto mapIt = THMap.begin(); mapIt != THMap.end(); mapIt++) {
-		std::cout << mapIt->first << std::ends;
-		for (auto listIt = mapIt->second.begin(); listIt != mapIt->second.end(); listIt++)
-			std::cout << (**listIt).priority << std::ends;
-		std::cout << std::endl;
-	}
-	*/
 }
 
 
-void EventManager::RemoveEventHandler(int type, EventHandle *handle) {
+void EventManager::RemoveEventHandler(int type, std::shared_ptr<EventHandle> handle) {
 	if (handle == nullptr)
 		return;
 	auto target = THMap.find(type);

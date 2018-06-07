@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <list>
 #include <map>
+#include <memory>
 #include "EventHandle.h"
 
 
@@ -14,7 +15,7 @@ using std::map;
 /* 带有优先级的事件管理类 */
 class EventManager {
 public:
-	using HandleList = list<EventHandle *>;
+	using HandleList = list<std::shared_ptr<EventHandle>>;
 	using TypeHandleMap = map<int, HandleList>;
 
 	EventManager(const EventManager &) = delete;
@@ -24,9 +25,9 @@ public:
 		return inst;
 	}
 
-	void AddEventHandler(int type, std::initializer_list<EventHandle *> handles);
+	void AddEventHandler(int type, std::initializer_list<std::shared_ptr<EventHandle>> handles);
 
-	void RemoveEventHandler(int type, EventHandle *handle);
+	void RemoveEventHandler(int type, std::shared_ptr<EventHandle> handle);
 
 	void ClearEventHandler(int type) { THMap.erase(type); }
 
@@ -38,4 +39,3 @@ private:
 
 	TypeHandleMap THMap;
 };
-

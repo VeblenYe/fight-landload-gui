@@ -1,53 +1,27 @@
 #pragma once
 
-
-#include <SDL.h>
 #include <string>
-#include <utility>
-#include "ClassEventHandler.h"
-#include "EventManager.h"
-#include "Window.h"
+#include "Widget.h"
 
 
-using std::string;
-
-
-class Button {
+class Button : public Widget {
 public:
-	Button(Window *window, int x, int y, int w, int h, int pri = 0) : priority(pri) {
-		pWindow = window;
-		buttonBox.x = x; buttonBox.y = y;
-		buttonBox.w = w; buttonBox.h = h;
-	}
+	Button(Window *window, int x, int y, int w, int h, int p = 0);
 
-	void setPos(int x, int y) {
-		buttonBox.x = x;
-		buttonBox.y = y;
-	}
+	virtual void loadButtonImage(const std::string &file);
 
-	// !注意，内联函数要放在头文件里，要是放在实现文件里会报错
-	virtual void loadButtonImage(const string &file) {
-		buttonImage = pWindow->loadImage(file);
-	}
+	void show() const override;
 
-	void show() {
-		pWindow->draw(buttonImage, buttonBox);
-	}
+	void addToWindow() const override;
 
-	virtual void registered(int type) {
-		ClassEventHandler<Button> *handle =
-			new ClassEventHandler<Button>(this, &Button::handle, this->priority);
-		EventManager::instance().AddEventHandler(type, { handle });
-	}
+	void removeFromWindow() const override;
 
-	virtual std::pair<int, int> handle(SDL_Event *e) { return { 0, 0 }; }
+	void registered(int type) override;
 
-	SDL_Rect buttonBox;
-	SDL_Texture *buttonImage;
+	std::pair<int, int> handle(SDL_Event *e) override { return { 0, 0 }; }
 
-	int priority;
-
-	virtual ~Button() { SDL_DestroyTexture(buttonImage); }
+	~Button() { SDL_DestroyTexture(buttonImage); }
 private:
-	Window * pWindow;
+	SDL_Texture *buttonImage;
+	std::shared_ptr<ClassEventHandler<Button>> handler;
 };

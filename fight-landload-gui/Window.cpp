@@ -1,5 +1,5 @@
 #include "Window.h"
-#include <stdexcept>
+#include "Widget.h"
 #include <SDL_image.h>
 #include <iostream>
 
@@ -7,16 +7,16 @@
 using std::runtime_error;
 
 
-unique_ptr<SDL_Window, void(*)(SDL_Window *)> Window::mWindow =
-unique_ptr<SDL_Window, void(*)(SDL_Window *)>(nullptr, SDL_DestroyWindow);
+std::unique_ptr<SDL_Window, void(*)(SDL_Window *)> Window::mWindow =
+std::unique_ptr<SDL_Window, void(*)(SDL_Window *)>(nullptr, SDL_DestroyWindow);
 
-unique_ptr<SDL_Renderer, void(*)(SDL_Renderer *)> Window::mRenderer =
-unique_ptr<SDL_Renderer, void(*)(SDL_Renderer *)>(nullptr, SDL_DestroyRenderer);
+std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer *)> Window::mRenderer =
+std::unique_ptr<SDL_Renderer, void(*)(SDL_Renderer *)>(nullptr, SDL_DestroyRenderer);
 
 SDL_Rect Window::mBox;
 
 
-Window::Window(const string &title, int w, int h) try {
+Window::Window(const std::string &title, int w, int h) try {
 	if (SDL_Init( SDL_INIT_EVERYTHING) == -1)
 		throw runtime_error("SDL_Init Failed");
 
@@ -41,7 +41,7 @@ catch (const runtime_error &e) {
 }
 
 
-SDL_Texture *Window::loadImage(const string &file) {
+SDL_Texture *Window::loadImage(const std::string &file) {
 	SDL_Texture *tex = IMG_LoadTexture(mRenderer.get(), file.c_str());
 	if (tex == nullptr)
 		throw runtime_error("IMG_Load_Texture Failed");
@@ -49,7 +49,7 @@ SDL_Texture *Window::loadImage(const string &file) {
 }
 
 
-SDL_Texture *Window::renderText(const string &fontFile, const string &msg,
+SDL_Texture *Window::renderText(const std::string &fontFile, const std::string &msg,
 	SDL_Color color, int fontSize) {
 	TTF_Font *font = TTF_OpenFont(fontFile.c_str(), fontSize);
 	if (font == nullptr)
@@ -70,7 +70,7 @@ SDL_Texture *Window::renderText(const string &fontFile, const string &msg,
 }
 
 
-void Window::draw(SDL_Texture *tex, SDL_Rect &dst, SDL_Rect *clip, double angle,
+void Window::draw(SDL_Texture *tex, const SDL_Rect &dst, const SDL_Rect *clip, double angle,
 	int xPivot, int yPivot, SDL_RendererFlip flip) {
 	xPivot += dst.w / 2;
 	yPivot += dst.h / 2;
@@ -80,3 +80,9 @@ void Window::draw(SDL_Texture *tex, SDL_Rect &dst, SDL_Rect *clip, double angle,
 	SDL_RenderCopyEx(mRenderer.get(), tex, clip, &dst, angle, &pivot, flip);
 }
 
+
+void Window::show() {
+	draw(background, mBox);
+	for (auto w : widgets)
+		w->show();
+}

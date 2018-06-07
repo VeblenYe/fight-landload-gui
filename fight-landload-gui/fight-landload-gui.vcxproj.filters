@@ -13,68 +13,185 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\牌型判断头文件">
+      <UniqueIdentifier>{99dd953b-ff72-443b-8d98-b017740d9141}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\牌型判断源文件">
+      <UniqueIdentifier>{5913db35-b12e-4654-9b8e-92fc3949fc5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\GUI头文件">
+      <UniqueIdentifier>{c9398ae5-ad5e-4dfa-9551-f59a57d2116b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\GUI源文件">
+      <UniqueIdentifier>{1b63fc85-5ed2-4fa4-8605-5eed58e73886}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\事件分发处理源文件">
+      <UniqueIdentifier>{f8dbf39a-8fd8-4c35-b4a5-ec3e63426329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\事件分发处理头文件">
+      <UniqueIdentifier>{51aa1ee6-d839-4638-a1c5-911f3278b16f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\鼠标拖动头文件">
+      <UniqueIdentifier>{d594b638-d44e-4334-a5ef-6494e74b245e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\鼠标拖动源文件">
+      <UniqueIdentifier>{83ba6578-a89c-4185-bdb4-d33d720cac45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\工具">
+      <UniqueIdentifier>{c48d3a23-d368-41d1-8602-60782552f6e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\GUI头文件\基本">
+      <UniqueIdentifier>{db10e1bd-2130-49d2-855b-f52bb5ba0655}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\GUI头文件\派生">
+      <UniqueIdentifier>{efddfd19-a0d7-45c1-9688-a4e9dce74a97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\GUI源文件\基本">
+      <UniqueIdentifier>{28e3b280-88a0-4480-8519-fa3b5ea1d379}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\GUI源文件\派生">
+      <UniqueIdentifier>{6b15f8ea-1415-4553-acdd-1934280efd14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\游戏房间">
+      <UniqueIdentifier>{8dd1a8f9-68e5-4d0f-8acd-e7602acebb70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\游戏房间源文件">
+      <UniqueIdentifier>{a8470f68-c4bd-4aff-b2a8-ea988e15542a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="CardType.h">
+      <Filter>头文件\牌型判断头文件</Filter>
     </ClInclude>
-    <ClInclude Include="cleanup.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="CardTypeManager.h">
+      <Filter>头文件\牌型判断头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="CardTypeMap.h">
+      <Filter>头文件\牌型判断头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CardTypeString.h">
+      <Filter>头文件\牌型判断头文件</Filter>
     </ClInclude>
     <ClInclude Include="EventManager.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\事件分发处理头文件</Filter>
     </ClInclude>
     <ClInclude Include="EventHandle.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\事件分发处理头文件</Filter>
     </ClInclude>
     <ClInclude Include="ClassEventHandler.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Poker.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\事件分发处理头文件</Filter>
     </ClInclude>
     <ClInclude Include="MouseDrag.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\鼠标拖动头文件</Filter>
     </ClInclude>
     <ClInclude Include="common.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\工具</Filter>
+    </ClInclude>
+    <ClInclude Include="cleanup.h">
+      <Filter>头文件\工具</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>头文件\GUI头文件\基本</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget.h">
+      <Filter>头文件\GUI头文件\基本</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>头文件\GUI头文件\基本</Filter>
+    </ClInclude>
+    <ClInclude Include="StartButton.h">
+      <Filter>头文件\GUI头文件\派生</Filter>
+    </ClInclude>
+    <ClInclude Include="EndButton.h">
+      <Filter>头文件\GUI头文件\派生</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIfwd.h">
+      <Filter>头文件\GUI头文件\基本</Filter>
+    </ClInclude>
+    <ClInclude Include="Poker.h">
+      <Filter>头文件\GUI头文件\派生</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawButton.h">
+      <Filter>头文件\GUI头文件\派生</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckButton.h">
+      <Filter>头文件\GUI头文件\派生</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\游戏房间</Filter>
+    </ClInclude>
+    <ClInclude Include="deal.h">
+      <Filter>头文件\游戏房间</Filter>
+    </ClInclude>
+    <ClInclude Include="Buttonfwd.h">
+      <Filter>头文件\GUI头文件\派生</Filter>
     </ClInclude>
     <ClInclude Include="Manage.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Table.h">
+      <Filter>头文件\游戏房间</Filter>
+    </ClInclude>
+    <ClInclude Include="CardTypefwd.h">
+      <Filter>头文件\牌型判断头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItemfwd.h">
+      <Filter>头文件\游戏房间</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Window.cpp">
+    <ClCompile Include="Manage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="test.cpp">
+    <ClCompile Include="deal.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
+    <ClCompile Include="Demo.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CardType.cpp">
+      <Filter>源文件\牌型判断源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CardTypeManager.cpp">
+      <Filter>源文件\牌型判断源文件</Filter>
     </ClCompile>
     <ClCompile Include="EventManager.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Poker.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="EventHandle.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\事件分发处理源文件</Filter>
     </ClCompile>
     <ClCompile Include="MouseDrag.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\鼠标拖动源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>源文件\GUI源文件\基本</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget.cpp">
+      <Filter>源文件\GUI源文件\基本</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>源文件\GUI源文件\基本</Filter>
+    </ClCompile>
+    <ClCompile Include="EndButton.cpp">
+      <Filter>源文件\GUI源文件\派生</Filter>
+    </ClCompile>
+    <ClCompile Include="Poker.cpp">
+      <Filter>源文件\GUI源文件\派生</Filter>
+    </ClCompile>
+    <ClCompile Include="StartButton.cpp">
+      <Filter>源文件\GUI源文件\派生</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawButton.cpp">
+      <Filter>源文件\GUI源文件\派生</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckButton.cpp">
+      <Filter>源文件\GUI源文件\派生</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\游戏房间源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Manage.cpp">
+    <ClCompile Include="Table.cpp">
+      <Filter>源文件\游戏房间源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="common.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

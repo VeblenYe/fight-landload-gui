@@ -3,7 +3,6 @@
 
 #include <SDL.h>
 #include "EventHandle.h"
-#include <iostream>
 
 
 // 一个模板辅助类，只需特例化就可以将一个普通类进行事件注册、处理和分发
@@ -24,4 +23,3 @@ private:
 	T * ptc;
 	Func func;
 };
-

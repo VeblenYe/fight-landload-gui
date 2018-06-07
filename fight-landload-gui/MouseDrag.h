@@ -4,7 +4,6 @@
 #include <SDL.h>
 #include "ClassEventHandler.h"
 #include "EventManager.h"
-#include <iostream>
 
 
 class MouseDrag {
@@ -17,14 +16,14 @@ public:
 	}
 
 	void registered(int type) {
-		ClassEventHandler<MouseDrag> *handle =
-			new ClassEventHandler<MouseDrag>(this, &MouseDrag::handle, this->priority);
+		std::shared_ptr<ClassEventHandler<MouseDrag>> handle =
+			std::make_shared<ClassEventHandler<MouseDrag>>(this, &MouseDrag::handle, this->priority);
 		EventManager::instance().AddEventHandler(type, { handle });
 	}
 
 	std::pair<int, int> handle(SDL_Event *e);
 
-	SDL_Rect getDragArea() const { return area; }
+	const SDL_Rect &getDragArea() const { return area; }
 
 	bool isDrag() const {
 		if (area.w == 0 && area.h == 0)

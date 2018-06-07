@@ -46,7 +46,6 @@ std::pair<int, int> MouseDrag::handle(SDL_Event *e) {
 				area.w = pre.x - cur.x; area.h = pre.y - cur.y;
 			}
 		}
-		//std::cout << area.x << " " << area.y << " " <<  area.w << " " << area.h << std::endl;
 		handled = 1;
 		return { handled, 0 };
 	}

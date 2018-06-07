@@ -2,29 +2,32 @@
 
 
 #include "Button.h"
+#include "Buttonfwd.h"
+#include "GameItemfwd.h"
 
 
 class Poker : public Button {
 	friend bool operator<(const Poker &lhs, const Poker &rhs);
 public:
-	Poker(Window *window, int x, int y) : Button(window, x, y, weight, height) {}
+	Poker(Window *window, int x, int y) : Button(window, x, y, weight, height), holder(nullptr) {}
 
-	void loadButtonImage(const string &file) override {
+	void setHolder(std::shared_ptr<Player> h) {
+		holder = h;
+	}
+
+	void loadButtonImage(const std::string &file) override {
 		Button::loadButtonImage(file);
-		priority = std::stoi(file.substr(10));
-		nums = priority / 10;
+		setPriority(std::stoi(file.substr(10)));
+		nums = getPriority() / 10;
 	}
 
 	// 注意必须先读入图片再注册
-	void registered(int type) override {
-		ClassEventHandler<Poker> *handle =
-			new ClassEventHandler<Poker>(this, &Poker::handle, this->priority);
+	void registered(int type) { 
+		auto handle = std::make_shared<ClassEventHandler<Poker>>(this, &Poker::handle, getPriority());
 		EventManager::instance().AddEventHandler(type, { handle });
 	}
 
-	int getNum() const {
-		return nums;
-	}
+	int getNum() const { return nums; }
 
 	std::pair<int, int> handle(SDL_Event *e) override;
 
@@ -40,10 +43,6 @@ private:
 	// 牌状态
 	int state = 0;
 
-	// 移动距离
-	int moveExtent;
-
-	// 固定的上移距离
-	static const int move = -60;
+	// 持有人
+	std::shared_ptr<Player> holder;
 };
-
