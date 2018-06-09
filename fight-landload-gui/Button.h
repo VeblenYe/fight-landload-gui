@@ -6,22 +6,50 @@
 
 class Button : public Widget {
 public:
-	Button(Window *window, int x, int y, int w, int h, int p = 0);
+	Button(Window *window, int x, int y, int w, int h, int p = 0, SDL_Rect *c = nullptr);
 
 	virtual void loadButtonImage(const std::string &file);
 
-	void show() const override;
+	void show() override;
 
-	void addToWindow() const override;
+	void registered(int type);
 
-	void removeFromWindow() const override;
+	void unregister();
 
-	void registered(int type) override;
+	std::pair<int, int> handle(SDL_Event *e);
 
-	std::pair<int, int> handle(SDL_Event *e) override { return { 0, 0 }; }
+	SDL_Rect *getClip() const {
+		return clip;
+	}
 
-	~Button() { SDL_DestroyTexture(buttonImage); }
+	void setClip(int x, int y, int w, int h) {
+		clip = new SDL_Rect({ x, y, w, h });
+	}
+
+	int getState() const {
+		return state;
+	}
+
+	void setState(int s) {
+		state = s;
+	}
+
+	~Button() { 
+		SDL_DestroyTexture(buttonImage); 
+		if (clip)
+			delete clip;
+	}
 private:
+	// 按钮图片
 	SDL_Texture *buttonImage;
-	std::shared_ptr<ClassEventHandler<Button>> handler;
+
+	// 裁剪区域
+	SDL_Rect *clip;
+
+	// 按钮状态
+	int state = 0;
+
+	// 注册的事件及处理函数
+	std::shared_ptr<ClassEventHandler<Button>> handler =
+		std::make_shared<ClassEventHandler<Button>>(this, &Button::handle, getPriority());
 };

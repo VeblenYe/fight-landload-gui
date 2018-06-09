@@ -16,9 +16,7 @@ public:
 	}
 
 	void registered(int type) {
-		std::shared_ptr<ClassEventHandler<MouseDrag>> handle =
-			std::make_shared<ClassEventHandler<MouseDrag>>(this, &MouseDrag::handle, this->priority);
-		EventManager::instance().AddEventHandler(type, { handle });
+		EventManager::instance().AddEventHandler(type, { handler });
 	}
 
 	std::pair<int, int> handle(SDL_Event *e);
@@ -45,5 +43,8 @@ private:
 	SDL_Rect area;
 
 	int state = 0;
+
+	std::shared_ptr<ClassEventHandler<MouseDrag>> handler =
+		std::make_shared<ClassEventHandler<MouseDrag>>(this, &MouseDrag::handle, priority);
 };
 

@@ -6,8 +6,9 @@
 #include <SDL_ttf.h>
 #include <string>
 #include <memory>
-#include <vector>
 #include "GUIfwd.h"
+#include <unordered_set>
+#include <iostream>
 
 
 class Window {
@@ -44,15 +45,19 @@ public:
 	
 	// 添加窗口组件
 	void addWidget(std::shared_ptr<Widget> w) {
-		if (w != nullptr)
-			widgets.push_back(w);
+		if (widgets.find(w) == widgets.end()) {
+			widgets.insert(w);
+			std::cout << "添加窗口组件" << std::endl;
+		}
 	}
 
 	// 移除窗口组件
 	void removeWidget(std::shared_ptr<Widget> w) {
-		auto pos = std::find(widgets.begin(), widgets.end(), w);
-		if (pos != widgets.end())
+		auto pos = widgets.find(w);
+		if (pos != widgets.end()) {
 			widgets.erase(pos);
+			std::cout << "移除窗口组件" << std::endl;
+		}
 	}
 
 	~Window() {
@@ -69,5 +74,5 @@ private:
 	SDL_Texture *background;
 
 	// 注册的组件
-	std::vector<std::shared_ptr<Widget>> widgets;
+	std::unordered_set<std::shared_ptr<Widget>> widgets;
 };

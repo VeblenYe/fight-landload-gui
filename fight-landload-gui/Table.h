@@ -4,7 +4,7 @@
 #include "Widget.h"
 #include "CardTypeManager.h"
 #include "GameItemfwd.h"
-#include "Buttonfwd.h"
+#include "GUIfwd.h"
 #include <vector>
 
 
@@ -12,18 +12,19 @@ class Table : public Widget {
 public:
 	Table(Window *window);
 
-	void show() const override;
+	void show() override;
 
-	std::pair<int, int> handle(SDL_Event *e) override;
+	std::pair<int, int> handle(SDL_Event *e);
 
-	void registered(int type) {
-		handler = std::make_shared<ClassEventHandler<Table>>(this, &Table::handle, getPriority());
-		EventManager::instance().AddEventHandler(type, { handler });
-	}
+	void registered(int type);
 
-	void addToWindow() const;
+	void unregister();
 
-	void removeFromWindow() const;
+	void addButton(std::shared_ptr<Button> button);
+
+	void removeButton(std::shared_ptr<Button> button);
+
+	void updateMap();
 
 	void clear() { m.clear(); }
 
@@ -35,18 +36,19 @@ public:
 private:
 	CardTypeMap m;
 	std::string curType;
-	std::vector<std::shared_ptr<Poker>> temp;
+	std::vector<Poker *> temp;
 
 	void init();
 
-	std::shared_ptr<StartButton> startButton;
-	std::shared_ptr<DrawButton> drawButton;
-	std::shared_ptr<CheckButton> checkButton;
-	std::shared_ptr<EndButton> endButton;
+	std::shared_ptr<Button> startButton;
+	std::shared_ptr<Button> drawButton;
+	std::shared_ptr<Button> checkButton;
+	std::shared_ptr<Button> endButton;
 
 	std::shared_ptr<Player> p1;
 	std::shared_ptr<Player> p2;
 	std::shared_ptr<Player> p3;
 
-	std::shared_ptr<ClassEventHandler<Table>> handler;
+	std::shared_ptr<ClassEventHandler<Table>> handler =
+		std::make_shared<ClassEventHandler<Table>>(this, &Table::handle, getPriority());
 };

@@ -19,18 +19,18 @@ vector<shared_ptr<Poker>> readIn(Window *window) {
 		if (i < 160)
 			for (int j = 0; j < 4; j++) {
 				os << "pukeImage/" << i + j << ".jpg";
-				Poker *p = new Poker(window, 0, 0);
+				auto p = std::make_shared<Poker>(window, 0, 0);
 				p->loadButtonImage(os.str());
 				p->registered(SDL_MOUSEBUTTONUP);
-				vec.push_back(shared_ptr<Poker>(p));
+				vec.push_back(p);
 				os.str("");
 			}
 		else {
 			os << "pukeImage/" << i << ".jpg";
-			Poker *p = new Poker(window, 0, 0);
+			auto p = std::make_shared<Poker>(window, 0, 0);
 			p->loadButtonImage(os.str());
 			p->registered(SDL_MOUSEBUTTONUP);
-			vec.push_back(shared_ptr<Poker>(p));
+			vec.push_back(p);
 			os.str("");
 		}
 	}

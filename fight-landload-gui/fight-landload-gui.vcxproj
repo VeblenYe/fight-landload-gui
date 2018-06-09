@@ -125,19 +125,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
-    <ClInclude Include="Buttonfwd.h" />
     <ClInclude Include="CardType.h" />
     <ClInclude Include="CardTypefwd.h" />
     <ClInclude Include="CardTypeManager.h" />
     <ClInclude Include="CardTypeMap.h" />
     <ClInclude Include="CardTypeString.h" />
-    <ClInclude Include="CheckButton.h" />
     <ClInclude Include="ClassEventHandler.h" />
     <ClInclude Include="cleanup.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="deal.h" />
-    <ClInclude Include="DrawButton.h" />
-    <ClInclude Include="EndButton.h" />
     <ClInclude Include="EventHandle.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="GameItemfwd.h" />
@@ -146,7 +142,6 @@
     <ClInclude Include="MouseDrag.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Poker.h" />
-    <ClInclude Include="StartButton.h" />
     <ClInclude Include="Table.h" />
     <ClInclude Include="Widget.h" />
     <ClInclude Include="Window.h" />
@@ -155,17 +150,13 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CardType.cpp" />
     <ClCompile Include="CardTypeManager.cpp" />
-    <ClCompile Include="CheckButton.cpp" />
     <ClCompile Include="common.cpp" />
     <ClCompile Include="deal.cpp" />
-    <ClCompile Include="DrawButton.cpp" />
-    <ClCompile Include="EndButton.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="Manage.cpp" />
     <ClCompile Include="MouseDrag.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Poker.cpp" />
-    <ClCompile Include="StartButton.cpp" />
     <ClCompile Include="Demo.cpp" />
     <ClCompile Include="Table.cpp" />
     <ClCompile Include="Widget.cpp" />

@@ -1,31 +1,51 @@
 #include "Button.h"
 #include "Window.h"
+#include "common.h"
+#include <iostream>
 
 
-Button::Button(Window *window, int x, int y, int w, int h, int p) : Widget(window, x, y, w, h, p) {}
+Button::Button(Window *window, int x, int y, int w, int h, int p, SDL_Rect *c) : 
+	Widget(window, x, y, w, h, p), clip(c) {}
 
 
 void Button::loadButtonImage(const std::string &file) {
-	buttonImage =  getWindow()->loadImage(file);
+	buttonImage = getWindow()->loadImage(file);
 }
 
 
-void Button::show() const {
-	getWindow()->draw(buttonImage, getBox());
+void Button::show() {
+	getWindow()->draw(buttonImage, getBox(), clip);
 }
 
 
-void Button::addToWindow() const {
-	getWindow()->addWidget(std::make_shared<Button>(*this));
-}
+std::pair<int, int> Button::handle(SDL_Event *e) {
 
+	if (e->type == SDL_MOUSEBUTTONDOWN && isInArea(getBox())) {
+		return { 1, 0 };
+	}
 
-void Button::removeFromWindow() const {
-	getWindow()->removeWidget(std::make_shared<Button>(*this));
+	if (e->type == SDL_MOUSEBUTTONUP) {
+		if (isInArea(getBox())) {
+			state = 1;
+			return { 1, 0 };
+		}
+		else {
+			return { 1, 0 };
+		}
+	}
+
+	return { 0, 0 };
 }
 
 
 void Button::registered(int type) {
-	handler = std::make_shared<ClassEventHandler<Button>>(this, &Button::handle, getPriority());
-	EventManager::instance().AddEventHandler(type, { handler });
+	if (!findEvent(type)) {
+		addEvent(type);
+		EventManager::instance().AddEventHandler(type, { handler });
+	}
+}
+
+void Button::unregister() {
+	for (auto type : getEvents())
+		EventManager::instance().RemoveEventHandler(type, { handler });
 }

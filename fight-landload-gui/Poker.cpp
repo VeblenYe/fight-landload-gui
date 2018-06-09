@@ -2,7 +2,6 @@
 #include "MouseDrag.h"
 #include "common.h"
 #include "Player.h"
-#include <iostream>
 
 
 bool operator<(const Poker &lhs, const Poker &rhs) {
@@ -24,18 +23,30 @@ std::pair<int, int> Poker::handle(SDL_Event *e) {
 		if (hasIntersection(getBox(), area)) {
 			if (state) {
 				state = !state;
-				setPos(getBox().x, getBox().y + 60);
-				holder->addToTemp(std::make_shared<Poker>(*this));
+				setPos(getBox().x, getBox().y - 60);
+				holder->addToTemp(this);
 			}
 			else {
 				state = !state;
-				setPos(getBox().x, getBox().y - 60);
-				holder->removeFromTemp(std::make_shared<Poker>(*this));
+				setPos(getBox().x, getBox().y + 60);
+				holder->removeFromTemp(this);
 			}
-
-			std::cout << "¸ÃÅÆÎª" << nums << std::endl;
 			handled = 1;
 		}
 	
 	return { handled, in };
+}
+
+
+void Poker::registered(int type) {
+	if (!findEvent(type)) {
+		addEvent(type);
+		EventManager::instance().AddEventHandler(type, { handler });
+	}
+}
+
+
+void Poker::unregister() {
+	for (auto type : getEvents())
+		EventManager::instance().RemoveEventHandler(type, { handler });
 }

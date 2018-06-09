@@ -99,32 +99,14 @@
     <ClInclude Include="Button.h">
       <Filter>头文件\GUI头文件\基本</Filter>
     </ClInclude>
-    <ClInclude Include="StartButton.h">
-      <Filter>头文件\GUI头文件\派生</Filter>
-    </ClInclude>
-    <ClInclude Include="EndButton.h">
-      <Filter>头文件\GUI头文件\派生</Filter>
-    </ClInclude>
     <ClInclude Include="GUIfwd.h">
       <Filter>头文件\GUI头文件\基本</Filter>
-    </ClInclude>
-    <ClInclude Include="Poker.h">
-      <Filter>头文件\GUI头文件\派生</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawButton.h">
-      <Filter>头文件\GUI头文件\派生</Filter>
-    </ClInclude>
-    <ClInclude Include="CheckButton.h">
-      <Filter>头文件\GUI头文件\派生</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>头文件\游戏房间</Filter>
     </ClInclude>
     <ClInclude Include="deal.h">
       <Filter>头文件\游戏房间</Filter>
-    </ClInclude>
-    <ClInclude Include="Buttonfwd.h">
-      <Filter>头文件\GUI头文件\派生</Filter>
     </ClInclude>
     <ClInclude Include="Manage.h">
       <Filter>头文件</Filter>
@@ -137,6 +119,9 @@
     </ClInclude>
     <ClInclude Include="GameItemfwd.h">
       <Filter>头文件\游戏房间</Filter>
+    </ClInclude>
+    <ClInclude Include="Poker.h">
+      <Filter>头文件\GUI头文件\派生</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -170,19 +155,7 @@
     <ClCompile Include="Button.cpp">
       <Filter>源文件\GUI源文件\基本</Filter>
     </ClCompile>
-    <ClCompile Include="EndButton.cpp">
-      <Filter>源文件\GUI源文件\派生</Filter>
-    </ClCompile>
     <ClCompile Include="Poker.cpp">
-      <Filter>源文件\GUI源文件\派生</Filter>
-    </ClCompile>
-    <ClCompile Include="StartButton.cpp">
-      <Filter>源文件\GUI源文件\派生</Filter>
-    </ClCompile>
-    <ClCompile Include="DrawButton.cpp">
-      <Filter>源文件\GUI源文件\派生</Filter>
-    </ClCompile>
-    <ClCompile Include="CheckButton.cpp">
       <Filter>源文件\GUI源文件\派生</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">

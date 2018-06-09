@@ -10,4 +10,3 @@ vector<shared_ptr<Poker>> readIn(Window *window);
 
 // ·¢ÅÆ
 void deal(vector<shared_ptr<Poker>> vec, Player *p1, Player *p2, Player *p3);
-

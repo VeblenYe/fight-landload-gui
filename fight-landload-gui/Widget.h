@@ -2,29 +2,36 @@
 
 
 #include "GUIfwd.h"
-#include <utility>
-#include <SDL.h>
-#include "ClassEventHandler.h"
 #include "EventManager.h"
+#include "ClassEventHandler.h"
+
+#include <SDL.h>
 #include <memory>
+#include <unordered_set>
+#include <utility>
 
 
-class Widget {
+class Widget : public std::enable_shared_from_this<Widget> {
 public:
 	Widget(Window *window, int x, int y, int w, int h, int p);
 
-	virtual void show() const {}
+	// 实际上只要show()和析构函数为虚函数即可
+	virtual void show() {}
 
-	virtual std::pair<int, int> handle(SDL_Event *e) { return { 0, 0 }; }
+	// 事件处理
+	std::pair<int, int> handle(SDL_Event *e) { return { 0, 0 }; }
 
-	virtual void addToWindow() const;
+	// 注册到窗口
+	void addToWindow();
 
-	virtual void removeFromWindow() const;
+	// 从窗口移除
+	void removeFromWindow();
 
-	virtual void registered(int type) {
-		handler = std::make_shared<ClassEventHandler<Widget>>(this, &Widget::handle, priority);
-		EventManager::instance().AddEventHandler(type, { handler });
-	}
+	// 注册事件处理
+	void registered(int type);
+
+	// 移除所有事件
+	void unregister();
 
 	Window *getWindow() const { return pWindow; }
 
@@ -40,10 +47,31 @@ public:
 
 	void setPriority(int p) { priority = p; }
 
-	virtual ~Widget();
+	void addEvent(int type) {
+		events.insert(type);
+	}
+
+	bool findEvent(int type) {
+		return events.find(type) != events.end();
+	}
+
+	const std::unordered_set<int> &getEvents() const {
+		return events;
+	}
+
+	virtual ~Widget() {}
 private:
+	// 所在窗口
 	Window * pWindow;
+
+	// 所占区域
 	SDL_Rect Box;
+
+	// 优先级
 	int priority;
-	std::shared_ptr<ClassEventHandler<Widget>> handler;
+
+	// 注册的事件及处理函数
+	std::shared_ptr<ClassEventHandler<Widget>> handler =
+		std::make_shared<ClassEventHandler<Widget>>(this, &Widget::handle, getPriority());
+	std::unordered_set<int> events;
 };
