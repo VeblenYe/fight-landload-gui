@@ -54,7 +54,7 @@ public:
 
 	void clearHold();
 
-	void clearTemp() { temp.clear(); }
+	void clearTemp();
 
 	bool isEmpty() const { return hold.empty(); }
 

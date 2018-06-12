@@ -80,6 +80,14 @@ void Player::removeFromTemp(Poker *p) {
 }
 
 
+void Player::clearTemp() {
+	for (auto p : temp) {
+		removeFromTemp(p);
+	}
+	temp.clear();
+}
+
+
 void Player::clearHold() {
 	for (auto p : hold) {
 		p->unregister();

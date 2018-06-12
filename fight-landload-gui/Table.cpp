@@ -191,7 +191,7 @@ std::pair<int, int> Table::handle(SDL_Event *e) {
 			std::cout << "不能出牌" << std::endl;
 	}
 
-
+	// 过牌按钮被按下
 	if (checkButton->getState() == 1) {
 		checkButton->setState(0);
 		if (flag == 2) {
@@ -231,6 +231,7 @@ std::pair<int, int> Table::handle(SDL_Event *e) {
 		}
 	}
 
+	// 结束游戏按钮被按下
 	if (endButton->getState() == 1) {
 		removeButton(endButton);
 		addButton(startButton);
