@@ -21,15 +21,21 @@ void Button::show() {
 std::pair<int, int> Button::handle(SDL_Event *e) {
 
 	if (e->type == SDL_MOUSEBUTTONDOWN && isInArea(getBox())) {
+		setClip(67, 30, 645, 275);
 		return { 1, 0 };
 	}
 
 	if (e->type == SDL_MOUSEBUTTONUP) {
 		if (isInArea(getBox())) {
+			setClip(67, 40, 645, 275);
+			if (state == -1) {
+				return { 1, 0 };
+			}
 			state = 1;
 			return { 1, 0 };
 		}
 		else {
+			setClip(67, 40, 645, 275);
 			return { 1, 0 };
 		}
 	}

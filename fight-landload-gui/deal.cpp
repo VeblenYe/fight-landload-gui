@@ -12,14 +12,14 @@ using std::uniform_int_distribution;
 
 
 // 读入所有扑克牌
-vector<shared_ptr<Poker>> readIn(Window *window) {
+vector<Poker *> readIn(Window *window) {
 	ostringstream os;
-	vector<shared_ptr<Poker>> vec;
+	vector<Poker *> vec;
 	for (int i = 30; i < 180; i += 10) {
 		if (i < 160)
 			for (int j = 0; j < 4; j++) {
 				os << "pukeImage/" << i + j << ".jpg";
-				auto p = std::make_shared<Poker>(window, 0, 0);
+				auto p = new Poker(window, 0, 0);
 				p->loadButtonImage(os.str());
 				p->registered(SDL_MOUSEBUTTONUP);
 				vec.push_back(p);
@@ -27,7 +27,7 @@ vector<shared_ptr<Poker>> readIn(Window *window) {
 			}
 		else {
 			os << "pukeImage/" << i << ".jpg";
-			auto p = std::make_shared<Poker>(window, 0, 0);
+			auto p = new Poker(window, 0, 0);
 			p->loadButtonImage(os.str());
 			p->registered(SDL_MOUSEBUTTONUP);
 			vec.push_back(p);
@@ -39,7 +39,7 @@ vector<shared_ptr<Poker>> readIn(Window *window) {
 
 
 // 发牌
-void deal(vector<shared_ptr<Poker>> vec, Player *p1, Player *p2, Player *p3) {
+void deal(vector<Poker *> vec, Player *p1, Player *p2, Player *p3) {
 	p1->clear();
 	p2->clear();
 	p3->clear();

@@ -27,6 +27,8 @@ public:
 
 	void unregister();
 
+	void setState(int i) { state = i; }
+
 	int getNum() const { return nums; }
 
 	std::pair<int, int> handle(SDL_Event *e);
@@ -41,7 +43,7 @@ private:
 	int nums;
 
 	// 牌状态
-	int state = 1;
+	int state = -1;
 
 	// 持有人，这里没用shared_ptr，懒得说原因，可以用shared_ptr了
 	std::shared_ptr<Player> holder;

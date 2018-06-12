@@ -10,6 +10,8 @@ bool operator<(const Poker &lhs, const Poker &rhs) {
 
 
 std::pair<int, int> Poker::handle(SDL_Event *e) {
+	if (state == -1)
+		return { 0, 0 };
 	int handled = 0;
 
 	// Êó±êÍÏ¶¯ÇøÓò

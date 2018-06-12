@@ -5,8 +5,8 @@
 
 
 // ∂¡»Î∆ÀøÀ≈∆
-vector<shared_ptr<Poker>> readIn(Window *window);
+vector<Poker *> readIn(Window *window);
 
 
 // ∑¢≈∆
-void deal(vector<shared_ptr<Poker>> vec, Player *p1, Player *p2, Player *p3);
+void deal(vector<Poker *> vec, Player *p1, Player *p2, Player *p3);

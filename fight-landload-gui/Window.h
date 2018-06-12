@@ -47,7 +47,7 @@ public:
 	void addWidget(std::shared_ptr<Widget> w) {
 		if (widgets.find(w) == widgets.end()) {
 			widgets.insert(w);
-			std::cout << "添加窗口组件" << std::endl;
+			//std::cout << "添加窗口组件" << std::endl;
 		}
 	}
 
@@ -56,7 +56,7 @@ public:
 		auto pos = widgets.find(w);
 		if (pos != widgets.end()) {
 			widgets.erase(pos);
-			std::cout << "移除窗口组件" << std::endl;
+			//std::cout << "移除窗口组件" << std::endl;
 		}
 	}
 

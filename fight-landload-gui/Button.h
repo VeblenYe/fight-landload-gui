@@ -46,8 +46,8 @@ private:
 	// 裁剪区域
 	SDL_Rect *clip;
 
-	// 按钮状态
-	int state = 0;
+	// 按钮状态：0、1有效，-1无效
+	int state = -1;
 
 	// 注册的事件及处理函数
 	std::shared_ptr<ClassEventHandler<Button>> handler =

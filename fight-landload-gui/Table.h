@@ -28,23 +28,39 @@ public:
 
 	void clear() { m.clear(); }
 
+	void clearTemp();
+
 	const std::string &getType() const { return curType; }
 
-	void judgeType() { curType = typeJudgement(m); }
+	bool drawOrNot(CardTypeMap &temp);
+
+	void draw();
+
+	bool winner() const;
+
+	void resetPlayerPos();
+
+	// 从给定的玩家手牌中找出比当前牌型大的牌
+	bool prompt(std::shared_ptr<Player> p);
 
 	~Table();
 private:
 	CardTypeMap m;
-	std::string curType;
+	std::string curType = INVALIDCARDTYPE;
 	std::vector<Poker *> temp;
 
 	void init();
+
+	void setTempPos();
+
+	int flag = 0;
 
 	std::shared_ptr<Button> startButton;
 	std::shared_ptr<Button> drawButton;
 	std::shared_ptr<Button> checkButton;
 	std::shared_ptr<Button> endButton;
 
+	std::shared_ptr<Player> curPlayer;
 	std::shared_ptr<Player> p1;
 	std::shared_ptr<Player> p2;
 	std::shared_ptr<Player> p3;
